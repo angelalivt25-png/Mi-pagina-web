@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Angela Livier Torres Parra · Ingeniería en Energías Renovables</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* =============================================
+       VARIABLES DE COLOR Y TIPOGRAFÍA
+    ============================================= */
+    :root {
+      --beige-100: #faf7f2;
+      --beige-200: #f2ece0;
+      --beige-300: #e8dcc8;
+      --beige-400: #d4c4a8;
+      --sand:      #c9b99a;
+      --warm-gray: #7a7062;
+      --dark:      #2e2a24;
+      --accent:    #5e8c61;   /* verde bosque — energía renovable */
+      --accent-2:  #b87333;   /* cobre — ingeniería */
+      --white:     #ffffff;
+    }
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--beige-100);
+      color: var(--dark);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* =============================================
+       TEXTURA DE FONDO
+    ============================================= */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(94,140,97,.07) 0%, transparent 50%),
+        radial-gradient(circle at 85% 80%, rgba(184,115,51,.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* =============================================
+       HEADER / HERO
+    ============================================= */
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 6rem 8vw 4rem;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* línea decorativa diagonal */
+    header::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 55%;
+      height: 120%;
+      background: var(--beige-200);
+      transform: skewX(-6deg);
+      z-index: -1;
+      border-left: 2px solid var(--beige-300);
+    }
+
+    .hero-text { animation: fadeUp .9s ease both; }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.1;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent-2);
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--warm-gray);
+      max-width: 38ch;
+      margin-bottom: 2.4rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--dark);
+      color: var(--beige-100);
+      padding: .8rem 1.8rem;
+      border-radius: 2px;
+      font-family: 'DM Mono', monospace;
+      font-size: .82rem;
+      letter-spacing: .1em;
+      text-decoration: none;
+      transition: background .25s, transform .2s;
+    }
+    .hero-cta:hover { background: var(--accent); transform: translateY(-2px); }
+    .hero-cta svg { width: 16px; height: 16px; }
+
+    /* ---- FOTO ---- */
+    .hero-photo {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp .9s .2s ease both;
+    }
+
+    .photo-frame {
+      position: relative;
+      width: min(340px, 90%);
+      aspect-ratio: 3/4;
+    }
+
+    /* === PLACEHOLDER DE FOTO — CAMBIA SOLO LA URL AQUÍ === */
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      border-radius: 2px;
+
+      /*
+      ┌─────────────────────────────────────────────────────┐
+      │  🖼️  REEMPLAZA ESTA URL CON TU FOTO PERSONAL        │
+      │  src="TU_URL_DE_FOTO_AQUI"                          │
+      └─────────────────────────────────────────────────────┘
+      */
+      content: url("https://placehold.co/340x453/e8dcc8/7a7062?text=Tu+Foto+Aquí");
+
+      /* Cuando tengas tu foto, elimina la línea de "content"  */
+      /* y usa el atributo src del <img> directamente:         */
+      /* <img src="TU_URL_DE_FOTO_AQUI" alt="Angela Torres">  */
+    }
+
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -10px -10px 10px 10px;
+      border: 2px solid var(--accent);
+      border-radius: 2px;
+      z-index: -1;
+      opacity: .5;
+    }
+
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: 10px -20px -20px 20px;
+      background: var(--beige-300);
+      border-radius: 2px;
+      z-index: -2;
+    }
+
+    /* =============================================
+       NAV LATERAL FIJO
+    ============================================= */
+    nav.side-nav {
+      position: fixed;
+      left: 2vw;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      z-index: 100;
+    }
+
+    nav.side-nav a {
+      writing-mode: vertical-lr;
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sand);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    nav.side-nav a:hover { color: var(--accent); }
+
+    /* =============================================
+       SECCIONES GENÉRICAS
+    ============================================= */
+    section {
+      position: relative;
+      padding: 7rem 8vw;
+      z-index: 1;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .6rem;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      margin-bottom: 2.8rem;
+      color: var(--dark);
+    }
+
+    /* =============================================
+       SOBRE MÍ
+    ============================================= */
+    #sobre-mi {
+      background: var(--beige-200);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--warm-gray);
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--beige-100);
+      border: 1px solid var(--beige-300);
+      padding: 1.4rem 1.6rem;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent);
+    }
+
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--accent-2);
+      line-height: 1;
+      margin-bottom: .3rem;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+    }
+
+    /* =============================================
+       EDUCACIÓN
+    ============================================= */
+    #educacion { background: var(--beige-100); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--beige-300));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      animation: fadeUp .7s ease both;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: .35rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--beige-100);
+      box-shadow: 0 0 0 3px rgba(94,140,97,.2);
+    }
+
+    .timeline-date {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      color: var(--accent-2);
+      text-transform: uppercase;
+      margin-bottom: .3rem;
+    }
+
+    .timeline-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--dark);
+      margin-bottom: .2rem;
+    }
+
+    .timeline-org {
+      font-size: .9rem;
+      color: var(--warm-gray);
+      margin-bottom: .5rem;
+    }
+
+    .timeline-desc {
+      font-size: .9rem;
+      color: var(--warm-gray);
+    }
+
+    /* =============================================
+       EXPERIENCIA
+    ============================================= */
+    #experiencia { background: var(--beige-200); }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .exp-card {
+      background: var(--beige-100);
+      border: 1px solid var(--beige-300);
+      padding: 2rem;
+      border-radius: 2px;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .exp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(46,42,36,.08);
+    }
+
+    .exp-icon {
+      width: 44px; height: 44px;
+      background: var(--beige-200);
+      border: 1px solid var(--beige-300);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.3rem;
+    }
+
+    .exp-card h3 {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: .3rem;
+    }
+
+    .exp-card p {
+      font-size: .88rem;
+      color: var(--warm-gray);
+    }
+
+    /* =============================================
+       INTERESES
+    ============================================= */
+    #intereses { background: var(--beige-100); }
+
+    .interest-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .interest-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--beige-200);
+      border: 1px solid var(--beige-300);
+      padding: .6rem 1.2rem;
+      border-radius: 999px;
+      font-family: 'DM Mono', monospace;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      color: var(--dark);
+      transition: background .2s, border-color .2s;
+    }
+
+    .interest-tag:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    /* =============================================
+       CONTACTO
+    ============================================= */
+    #contacto {
+      background: var(--dark);
+      color: var(--beige-200);
+      text-align: center;
+    }
+
+    #contacto .section-label { color: var(--accent); }
+    #contacto h2 { color: var(--beige-100); }
+
+    #contacto p {
+      color: var(--sand);
+      max-width: 48ch;
+      margin: 0 auto 2.4rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .85rem 2rem;
+      border-radius: 2px;
+      font-family: 'DM Mono', monospace;
+      font-size: .82rem;
+      letter-spacing: .1em;
+      text-decoration: none;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .contact-btn:hover { transform: translateY(-2px); opacity: .85; }
+
+    .contact-btn.primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .contact-btn.secondary {
+      background: transparent;
+      border: 1px solid var(--sand);
+      color: var(--sand);
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 1.6rem 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--warm-gray);
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* =============================================
+       ANIMACIONES
+    ============================================= */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 768px) {
+      header {
+        grid-template-columns: 1fr;
+        padding: 5rem 6vw 4rem;
+        min-height: auto;
+        gap: 3rem;
+      }
+      header::after { display: none; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      nav.side-nav { display: none; }
+
+      footer { flex-direction: column; gap: .5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       NAV LATERAL
+  =========================================== -->
+  <nav class="side-nav" aria-label="Navegación rápida">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#educacion">Educación</a>
+    <a href="#experiencia">Experiencia</a>
+    <a href="#intereses">Intereses</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <!-- ==========================================
+       HERO
+  =========================================== -->
+  <header>
+    <div class="hero-text">
+      <p class="hero-eyebrow">Ingeniería · Energías Renovables · UABCS</p>
+      <h1>Angela Livier<br/><em>Torres Parra</em></h1>
+      <p class="hero-subtitle">
+        Estudiante de Ingeniería en Fuentes de Energía Renovable,
+        comprometida con la transición energética y la tecnología sostenible.
+      </p>
+      <a href="#contacto" class="hero-cta">
+        <!-- ícono: papel de carta -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <polyline points="3,5 12,13 21,5"/>
+        </svg>
+        Contáctame
+      </a>
+    </div>
+
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <!--
+        ╔══════════════════════════════════════════════════════╗
+        ║  📸  FOTO PERSONAL — CAMBIA SOLO ESTA LÍNEA          ║
+        ║                                                      ║
+        ║  Reemplaza el valor del atributo src con la URL      ║
+        ║  de tu imagen, por ejemplo:                          ║
+        ║  src="https://github.com/tu-usuario/tu-repo/         ║
+        ║       raw/main/foto.jpg"                             ║
+        ║                                                      ║
+        ║  👇 EDITA SOLO EL ATRIBUTO src= DE ESTA ETIQUETA 👇  ║
+        ╚══════════════════════════════════════════════════════╝
+        -->
+        <img
+          src="AQUI_VA_LA_URL_DE_TU_FOTO"
+          alt="Foto de Angela Livier Torres Parra"
+          onerror="this.src='https://placehold.co/340x453/e8dcc8/7a7062?text=Foto+de+Angela'"
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       SOBRE MÍ
+  =========================================== -->
+  <section id="sobre-mi">
+    <p class="section-label">// 01 · About</p>
+    <h2>Sobre mí</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Me llamo Ángela Livier Torres Parra, soy estudiante de segundo semestre de
+          Ingeniería en Fuentes de Energía Renovable en la Universidad Autónoma de
+          Baja California Sur. Mi enfoque está en el diseño y la implementación de
+          soluciones energéticas limpias y eficientes.
+        </p>
+        <p>
+          Cuento con capacitación técnica en dibujo arquitectónico y paquete de
+          ciencias exactas, lo que complementa mi formación de ingeniería con
+          habilidades de representación gráfica y pensamiento analítico.
+        </p>
+        <p>
+          Mi visión es contribuir a la transición energética de México y América
+          Latina desde la base técnica y científica que brinda mi carrera.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">2°</div>
+          <div class="stat-label">Semestre activo</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">IER</div>
+          <div class="stat-label">Ingeniería · UABCS</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Capacitaciones técnicas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Áreas de interés</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       EDUCACIÓN
+  =========================================== -->
+  <section id="educacion">
+    <p class="section-label">// 02 · Education</p>
+    <h2>Educación</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">2024 – Presente</div>
+        <div class="timeline-title">Ingeniería en Fuentes de Energía Renovable</div>
+        <div class="timeline-org">Universidad Autónoma de Baja California Sur · La Paz, BCS</div>
+        <div class="timeline-desc">2° semestre. Formación integral en sistemas fotovoltaicos, eólicos, biomasa y otras tecnologías de generación limpia.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Egresada</div>
+        <div class="timeline-title">Bachillerato General con Capacitaciones Técnicas</div>
+        <div class="timeline-org">Colegio de Bachilleres del Estado de BCS · Plantel 01</div>
+        <div class="timeline-desc">
+          Capacitación en Dibujo Arquitectónico · Paquete de Ciencias Exactas
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       EXPERIENCIA
+  =========================================== -->
+  <section id="experiencia">
+    <p class="section-label">// 03 · Experience</p>
+    <h2>Experiencia</h2>
+    <div class="exp-grid">
+
+      <div class="exp-card">
+        <div class="exp-icon">🦷</div>
+        <h3>Secretaria · Consultorio Dental</h3>
+        <p>Gestión de agenda, atención al cliente, manejo de expedientes y coordinación de citas. Desarrollo de habilidades organizativas y de comunicación.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-icon">📐</div>
+        <h3>Dibujo Arquitectónico</h3>
+        <p>Capacitación técnica en representación gráfica de planos y proyectos. Uso de instrumentos y software de diseño básico.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-icon">🏪</div>
+        <h3>Colaboradora · Papelería</h3>
+        <p>Atención al público, manejo de inventario y caja, servicio al cliente en entorno comercial.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       INTERESES
+  =========================================== -->
+  <section id="intereses">
+    <p class="section-label">// 04 · Interests</p>
+    <h2>Intereses</h2>
+    <div class="interest-list">
+      <span class="interest-tag">☀️ Energías Renovables</span>
+      <span class="interest-tag">⚡ Sistemas Fotovoltaicos</span>
+      <span class="interest-tag">🌬️ Energía Eólica</span>
+      <span class="interest-tag">💃 Danza Folclórica</span>
+      <span class="interest-tag">🎨 Pintura</span>
+      <span class="interest-tag">📐 Dibujo Técnico</span>
+      <span class="interest-tag">🔬 Ciencias Exactas</span>
+      <span class="interest-tag">🌱 Sostenibilidad</span>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTACTO
+  =========================================== -->
+  <section id="contacto">
+    <p class="section-label">// 05 · Contact</p>
+    <h2>Contacto</h2>
+    <p>¿Tienes alguna pregunta o propuesta? Estoy disponible para colaboraciones académicas y proyectos de energías renovables.</p>
+    <div class="contact-links">
+      <a href="mailto:angelalivt_25@alu.uabcs.mx" class="contact-btn primary">
+        ✉ angelalivt_25@alu.uabcs.mx
+      </a>
+      <a href="https://uabcs.mx" target="_blank" rel="noopener" class="contact-btn secondary">
+        🎓 UABCS
+      </a>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER
+  =========================================== -->
+  <footer>
+    <span>© 2025 Angela Livier Torres Parra</span>
+    <span>IER · UABCS · La Paz, BCS</span>
+  </footer>
+
+</body>
+</html>
